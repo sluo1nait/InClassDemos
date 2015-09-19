@@ -65,16 +65,18 @@ void Main()
 	 //only those bills which were paid.
 	 
 	 
-	 var results2 =from order in bills
+	 var results2 =from orders in Bills
 	 				where orders.PaidStatus &&
 					(orders.BillDate.Month == 9 && orders.BillDate.Year == 2014)
-					orderby Waiter.LastName, Waiter.FirstName
+					orderby orders.Waiter.LastName, orders.Waiter.FirstName
 					select new 
 		{
 	 						BillID=orders.BillID,
 							WaiterName = orders.Waiter.LastName + ", " + orders.Waiter.FirstName,
 							Orders =orders.BillItems
 		};
+		results2.Dump();
+	      
 	   //get all the bills and bill items for waiters in Sep of 2014
 	   }//eop
 	
@@ -89,7 +91,13 @@ public class FoodMargins
 }
 	
 //this is a DTO class
-public 
+public class BillOrders
+{
+	public int BillID{get; set;}
+	public string WaiterName {get; set;}
+	//public BillItems Orders {get; set;}   //BillItems is a collection or entity
+	public IEnumberable Orders {get; set;}
+}
 	   	   
 
 
