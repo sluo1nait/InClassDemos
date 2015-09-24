@@ -40,7 +40,7 @@ namespace eRestaurantSystem.DAL.Entites
 
         public virtual ICollection<Reservation> Reservations { get; set; }
 
-        public Table()
+        public Table() //???
         {
             Available = true;
             Smoking = false;

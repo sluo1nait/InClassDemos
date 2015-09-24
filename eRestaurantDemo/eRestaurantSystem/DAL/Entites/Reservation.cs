@@ -31,7 +31,7 @@ namespace eRestaurantSystem.DAL.Entites
         public string EventCode { get; set; }
 
         //Navigation Properties
-        public virtual SpecialEvent Event { get; set; }
+        public virtual SpecialEvent Event { get; set; }  //???
 
         //the Reservations table (sql) is a many to many
         //relationship to the Tables table (sql)
