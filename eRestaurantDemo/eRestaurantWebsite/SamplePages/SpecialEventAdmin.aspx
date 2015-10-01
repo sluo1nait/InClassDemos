@@ -46,13 +46,25 @@
             </td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            
+            <td colspan ="2" align ="center"> 
+   <asp:DetailsView ID="ReservationListDV" runat="server" AllowPaging="True" AutoGenerateRows="False" DataSourceID="ODSReservations" >
+       <EmptyDataTemplate>
+           No data to display at this time
+       </EmptyDataTemplate>
+       <Fields>
+           <asp:BoundField DataField="CustomerName" HeaderText="Name">
+           <HeaderStyle HorizontalAlign="Right" />
+           </asp:BoundField>
+           <asp:BoundField DataField="ReservationDate" DataFormatString="{0:MMM dd, yyyy h:mm tt}" HeaderText="Date" />
+           <asp:BoundField DataField="NumberInParty" HeaderText="Size" />
+           <asp:BoundField DataField="ContactPhone" HeaderText="Phone" />
+           <asp:BoundField DataField="ReservationStatus" HeaderText="Status" />
+       </Fields>
+                </asp:DetailsView>
+            </td>
+           
+        
+         
         </tr>
     </table>
     <asp:ObjectDataSource ID="ODSSpecialEvents" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="SpecialEvents_List" TypeName="eRestaurantSystem.BLL.AdminController"></asp:ObjectDataSource>
