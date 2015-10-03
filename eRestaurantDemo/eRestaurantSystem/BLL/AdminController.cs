@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 #region Additional Namespaces
 using eRestaurantSystem.DAL;//context
 using eRestaurantSystem.DAL.Entites;
+using eRestaurantSystem.DAL.DTOs;
+using eRestaurantSystem.DAL.POCOs;
 //using System.ComponentModel.DataAnnotations;//used for entity
 using System.ComponentModel;//Object Data Source
 using System.Data.Entity;
@@ -40,7 +42,7 @@ namespace eRestaurantSystem.BLL
         //Don't forget to build it, then the webpage can find it. 
         //Clean build library before try to use on webpage;
 
-
+        //get data
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Reservation> GetReservationsByEventCode(string eventcode)
         {
@@ -57,5 +59,43 @@ namespace eRestaurantSystem.BLL
             }
 
         }
-    }
-}
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<ReservationByDate> GetReservationsByDate(string reservationdate)
+        {
+            using (var context = new eRestaurantContext())
+            {
+                //Linq is not very playful or cooperative with
+                //DateTime
+
+                //extract the year, month and day ourselves out
+                //of the passed parameter value//
+                int theYear = (DateTime.Parse(reservationdate)).Year;
+                int theMonth = (DateTime.Parse(reservationdate)).Month;
+                int theDay = (DateTime.Parse(reservationdate)).Day;
+
+                var results = from eventitem in context.SpecialEvents
+                              orderby eventitem.Description
+                              select new ReservationByDate() //a new instance for each specialevent row on the table, build a DTO for eventCodeA, then b, then c...
+                              {
+                                  Description = eventitem.Description,
+                                  Reservations = from row in eventitem.Reservations//nested here,
+                                                 //only need entity belongs to that row
+                                                 where row.ReservationDate.Year == theYear
+                                                 && row.ReservationDate.Month == theMonth
+                                                 && row.ReservationDate.Day == theDay
+                                                 select new ReservationDetail() //a new for each reservation of a particular event, looping to get each corresponding reservation
+                                                 {
+                                                     CustomerName = row.CustomerName,
+                                                     ReservationDate = row.ReservationDate,
+                                                     NumberInParty = row.NumberInParty,
+                                                     ContactPhone = row.ContactPhone,
+                                                     ReservationStatus = row.ReservationStatus
+                                                 }
+                              };
+                return results.ToList();
+                
+            }
+        }
+
+   
