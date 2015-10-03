@@ -27,7 +27,7 @@ namespace eRestaurantSystem.DAL.Entites
         public virtual ICollection<BillItem> Items { get; set; }
         public virtual Waiter Waiter { get; set; }
         public virtual Table Table { get; set; }
-
+        public virtual Reservation Reservation { get; set; }
         public Bill()
         {
             BillDate = DateTime.Now;
