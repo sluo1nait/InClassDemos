@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AdminController.cs" />
+    <Compile Include="DAL\DTOs\MenuCategoryItems.cs" />
     <Compile Include="DAL\DTOs\ReservationByDate.cs" />
     <Compile Include="DAL\Entites\Bill.cs" />
     <Compile Include="DAL\Entites\BillItem.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="DAL\Entites\Table.cs" />
     <Compile Include="DAL\Entites\Waiter.cs" />
     <Compile Include="DAL\eRestaurantContext.cs" />
+    <Compile Include="DAL\POCOs\MenuItem.cs" />
     <Compile Include="DAL\POCOs\ReservationDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
