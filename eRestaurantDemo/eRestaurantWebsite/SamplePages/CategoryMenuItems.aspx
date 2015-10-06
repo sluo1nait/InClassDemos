@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <h1>Category Menu Items (Repeater)</h1>
     <div class="row col-md-12">
-        <asp:Repeater ID="MenuCategories" runat="server">
+        <asp:Repeater ID="MenuCategories" runat="server"
+             DataSourceID ="ODSCategoryMenuItems">
         <ItemTemplate>
             <h3>
                 <%# Eval("Description") %>>
@@ -11,7 +12,7 @@
             </h3>
             <div class ="well">
                 <asp:Repeater ID="MenuItems" runat="server"
-                    DateSource =' <%# Eval("MenuItems") %>'>
+                    DataSource='<%# Eval("MenuItems") %>'>
                 <ItemTemplate>
                    <h5>
                     <%# Eval("Description") %>
@@ -25,6 +26,9 @@
         </ItemTemplate>
             </asp:Repeater>
     </div>
-    <asp:ObjectDataSource ID="ODSCategoryMenuItems" runat="server"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ODSCategoryMenuItems" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="MenuCategoryItems_List" 
+        TypeName="eRestaurantSystem.BLL.AdminController"></asp:ObjectDataSource>
 </asp:Content>
 
