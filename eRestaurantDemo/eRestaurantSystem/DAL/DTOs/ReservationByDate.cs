@@ -15,6 +15,6 @@ namespace eRestaurantSystem.DAL.DTOs
        public string Description { get; set; }
        //hold a set of rows; the next variable will hold a collection
        //of reservation rows
-       public IEnumerable Reservations { get; set; } 
+       public IEnumerable Reservations { get; set; } //collect of flat data
     }
 }
