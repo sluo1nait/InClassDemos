@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AdminController.cs" />
+    <Compile Include="BusinessRuleException.cs" />
     <Compile Include="DAL\DTOs\MenuCategoryItems.cs" />
     <Compile Include="DAL\DTOs\ReservationByDate.cs" />
     <Compile Include="DAL\Entites\Bill.cs" />

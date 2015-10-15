@@ -51,9 +51,10 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/SamplePages/SpecialEventAdmin">SpecialEvent</a></li>
-                         <li><a runat="server" href="~/SamplePages/ListView">Listview Display</a></li>
-                        <li><a runat="server" href="~/SamplePages/CategoryMenuItems">Repeator2 Display</a></li>
-                         <li><a runat="server" href="~/SamplePages/ReservationByDate">Repeator Display</a></li>
+                         <li><a runat="server" href="~/SamplePages/ListView">LV Reservations</a></li>
+                        <li><a runat="server" href="~/SamplePages/CategoryMenuItems">Rpr2 CatMenuItems</a></li>
+                         <li><a runat="server" href="~/SamplePages/ReservationsByDate">Rpr Reservation</a></li>
+                        <li><a runat="server" href="~/CommandPages/SpecialEventsAdmin">LV CRUD</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
