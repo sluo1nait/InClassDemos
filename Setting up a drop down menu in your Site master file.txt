@@ -1,0 +1,43 @@
+Try this adjustment to your Site.Master menu.
+
+Changes
+
+1)Coment outyour current menu which is in  front of the <asp:LoginView>
+
+    	<%--   <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        
+                    </ul>--%>
+
+2)Find the closing tag <asp:LoginView>
+ 
+3) insert a <asp:Menu> control (as sampled below) after the <asp:LoginView> tag
+
+		<%-- AddContentTemplate this Menu control --%>
+                
+	     <asp:Menu ID="navMenu" runat="server" 
+                    BackColor="#000000" BorderColor="Red"
+                    StaticMenuItemStyle-ForeColor="#999999" 
+                    StaticMenuItemStyle-VerticalPadding="10px"
+                    StaticMenuItemStyle-HorizontalPadding="10px"
+                    RenderingMode="List" Orientation="Horizontal" 
+                    DynamicMenuItemStyle-ForeColor="#999999" 
+                    DynamicMenuStyle-BackColor="Black">
+                    <Items>
+                        <asp:MenuItem Text="Home" NavigateUrl="~/"></asp:MenuItem>
+
+                        <asp:MenuItem Text="DDMenu" Value="DDMenu">
+                            <asp:MenuItem Text="About Us" NavigateUrl="~/About.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Contact Us" NavigateUrl="~/Contact.aspx"></asp:MenuItem>
+
+                        </asp:MenuItem>
+
+                        <asp:MenuItem Text="About Us" NavigateUrl="~/About.aspx"></asp:MenuItem>
+                         <asp:MenuItem Text="Contact Us" NavigateUrl="~/Contact.aspx"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>)
+
+this example reuses the About and Contact pages as the simulated drop down menu items in your drop down menu (DDMenu).
+You would naturally replace the Text and NavigateUrl values to reflect your appropriate pages.

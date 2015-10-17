@@ -6,7 +6,8 @@ using System.Web;
 /// <summary>
 /// Summary description for BusinessRuleException
 /// </summary>
-[Serializable]
+/// //no name space, b/c can be accessed by website or eRestaurantSystem, it is known to everyone
+[Serializable] //you can handle it in a special way
 public class BusinessRuleException : Exception
 {
     public List<string> RuleDetails { get; set; }
