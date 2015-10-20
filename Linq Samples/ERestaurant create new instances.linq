@@ -46,7 +46,7 @@ void Main()
 	//	cost = food.CurrentCost,
 	//	//Profit = food.CurrentPrice - food.CurrentCost
 	//}//eop
-	
+
 	
 	var results = from food in Items
 	    where food.MenuCategory.Description.Equals("Entree")
@@ -60,7 +60,9 @@ void Main()
 		Profit = food.CurrentPrice - food.CurrentCost
 	   };
 	   results.Dump();
-	      
+	   
+
+}
 	 //Define other methods and classes here
 	 //only those bills which were paid.
 	 
@@ -76,21 +78,24 @@ void Main()
 							Orders =orders.BillItems
 		};
 	   //get all the bills and bill items for waiters in Sep of 2014
-	   }//eop
+	   //eop
 	
 	//this is a POCO class  
-public class FoodMargins
-{
-	public string Description {get; set;}
-	public decimal Price {get; set;}
-	public decimal cost {get; set;}
-	public decimal Profit {get; set;}
+			public class FoodMargins
+			{
+				public string Description {get; set;}
+				public decimal Price {get; set;}
+				public decimal cost {get; set;}
+				public decimal Profit {get; set;}
+			}   	 
+				}
 	
-}
+	
 	
 //this is a DTO class
-public 
-	   	   
+
+		
+  
 
 
 // Define other methods and classes here

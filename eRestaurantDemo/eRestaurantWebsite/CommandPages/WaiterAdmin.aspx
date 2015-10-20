@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <td style="width: 291px">Address</td>
-            <td>
+             <td>
                 <asp:TextBox ID="Address" runat="server"></asp:TextBox>
             </td>
         </tr>
@@ -68,7 +68,7 @@
             <td style="width: 291px">
                 <a href="javascript:__doPostBack('WaiterInsert','')">Insert</a></td>
             <td>
-                Update</td>
+                <a href="javascript:__doPostBack('LinkButton1','')">Update</a></td>
         </tr>
     </table>
     <br />
