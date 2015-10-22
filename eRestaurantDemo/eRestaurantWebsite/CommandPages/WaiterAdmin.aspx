@@ -10,9 +10,9 @@
     <br />
     <asp:Label ID="Label1" runat="server" Text="Waiter Names"></asp:Label>
 
-    <asp:DropDownList ID="WaiterList" runat="server" AppendDataBoundItems="True" DataSourceID="ODSwaiterList" DataTextField="FullName" DataValueField="WaiterID" Height="16px" Width="298px">
+    <asp:DropDownList ID="WaiterList" runat="server" DataSourceID="ODSwaiterList" DataTextField="FullName" DataValueField="WaiterID" Height="16px" Width="298px">
 
-        <asp:ListItem Value ="0"> Select a waiter</asp:ListItem>
+        
     </asp:DropDownList>
     <asp:LinkButton ID="FetchWaiter" runat="server" OnClick="FetchWaiter_Click">Fetch Waiter</asp:LinkButton>
     <asp:ObjectDataSource ID="ODSwaiterList" runat="server" DataObjectTypeName="eRestaurantSystem.DAL.Entites.Waiter" DeleteMethod="waiter_Delete" InsertMethod="Waiter_Add" OldValuesParameterFormatString="original_{0}" SelectMethod="Waiters_List" TypeName="eRestaurantSystem.BLL.AdminController" UpdateMethod="waiter_Update">

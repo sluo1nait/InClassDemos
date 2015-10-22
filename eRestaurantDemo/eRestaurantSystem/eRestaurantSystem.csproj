@@ -61,6 +61,7 @@
     <Compile Include="DAL\Entites\Table.cs" />
     <Compile Include="DAL\Entites\Waiter.cs" />
     <Compile Include="DAL\eRestaurantContext.cs" />
+    <Compile Include="DAL\POCOs\CategoryMenuItems.cs" />
     <Compile Include="DAL\POCOs\MenuItem.cs" />
     <Compile Include="DAL\POCOs\ReservationDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
