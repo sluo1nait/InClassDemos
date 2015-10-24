@@ -116,7 +116,7 @@ namespace eRestaurantSystem.BLL
                                               {
                                                   Description = row.Description,
                                                   Price = row.CurrentPrice,
-                                                  CAlories = row.Calories,
+                                                  Calories = row.Calories,
                                                   Comment = row.Comment,
 
                                               }
@@ -172,9 +172,37 @@ namespace eRestaurantSystem.BLL
                 context.SaveChanges(); 
 
             }
+
       
         #endregion
         } //eof class
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<WaiterBilling> GetWaiterBillingReport()
+        {
+            using (eRestaurantContext context = new eRestaurantContext())
+            {
+                var result = from abillrow in context.Bills //need to add the context;
+                             where abillrow.BillDate.Month == 5
+                             orderby abillrow.BillDate,
+                             abillrow.Waiter.LastName,
+                             abillrow.Waiter.FirstName
+                             select new WaiterBilling()  //add class name;
+                          {
+                              BillDate = abillrow.BillDate.Year+"/" +
+                                                abillrow.BillDate.Month+"/" +
+                                                abillrow.BillDate.Day,
+                              WaiterName = abillrow.Waiter.LastName + " , " +
+                                    abillrow.Waiter.FirstName,
+                              BillID = abillrow.BillID,
+                              BillTotal = abillrow.Items.Sum(eachbillitemrow => eachbillitemrow.Quantity * eachbillitemrow.SalePrice),
+                              PartySize = abillrow.NumberInParty,
+                              Contact = abillrow.Reservation.CustomerName
+                              //abillrow.BillItems.Sum
+                          };
+           return result.ToList();
+            }
+        }
 
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<CategoryMenuItems> GetReportCategoryMenuItems()

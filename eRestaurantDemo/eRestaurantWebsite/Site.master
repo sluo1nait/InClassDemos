@@ -49,32 +49,128 @@
                     <a class="navbar-brand" runat="server" href="~/">Jessica LUO</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/SamplePages/SpecialEventAdmin">SpecialEvent</a></li>
-                         <li><a runat="server" href="~/SamplePages/ListView">LV Reservations</a></li>
-                        <li><a runat="server" href="~/SamplePages/CategoryMenuItems">Rpr2 CatMenuItems</a></li>
-                         <li><a runat="server" href="~/SamplePages/ReservationsByDate">Rpr Reservation</a></li>
+
+                   <%-- <ul class="nav navbar-nav">
+
+                        <li><a runat="server" href="~/">Home</a></li>
+
+                        <li><a runat="server" href="~/SamplePages/SpecialEventsAdmin">SpecialEvents</a></li>
+
+                        <li><a runat="server" href="~/SamplePages/Listview">LV Reservations</a></li>
+
+                        <li><a runat="server" href="~/SamplePages/ReservationsByDate">Rpr Reservations</a></li>
+
+                        <li><a runat="server" href="~/SamplePages/CategoryMenuItems">Rpr CatMenuItems</a></li>
+
                         <li><a runat="server" href="~/CommandPages/SpecialEventsAdmin">LV CRUD</a></li>
-                        <li><a runat="server" href="~/CommandPages/WaiterAdmin">Single Row CRUD</a></li>
+
+                         <li><a runat="server" href="~/CommandPages/WaiterAdmin">Single Row CRUD</a></li>
+
                         <li><a runat="server" href="~/About">About</a></li>
+
                         <li><a runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
+
+                    </ul>--%>
+
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
+
                         <AnonymousTemplate>
+
                             <ul class="nav navbar-nav navbar-right">
+
                                 <li><a runat="server" href="~/Account/Register">Register</a></li>
+
                                 <li><a runat="server" href="~/Account/Login">Log in</a></li>
+
                             </ul>
+
                         </AnonymousTemplate>
+
                         <LoggedInTemplate>
+
                             <ul class="nav navbar-nav navbar-right">
+
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %>!</a></li>
+
                                 <li>
+
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+
                                 </li>
+
                             </ul>
+
                         </LoggedInTemplate>
+
                     </asp:LoginView>
+
+                     <asp:Menu ID="navMenu" runat="server" 
+
+                    BackColor="#000000" BorderColor="Red"
+
+                    StaticMenuItemStyle-ForeColor="#999999" 
+
+                    StaticMenuItemStyle-VerticalPadding="10px"
+
+                    StaticMenuItemStyle-HorizontalPadding="10px"
+
+                    RenderingMode="List" Orientation="Horizontal" 
+
+                    DynamicMenuItemStyle-ForeColor="#999999" 
+
+                    DynamicMenuStyle-BackColor="Black">
+
+                    <Items>
+
+                        <asp:MenuItem Text="Home" NavigateUrl="~/"></asp:MenuItem>
+
+
+
+
+                        <asp:MenuItem Text="Queries" Value="Queries">
+
+                            <asp:MenuItem Text="SpecialEvents" NavigateUrl="~/SamplePages/SpecialEventsAdmin"></asp:MenuItem>
+
+                            <asp:MenuItem Text="ListView Reservations" NavigateUrl="~/SamplePages/Listview"></asp:MenuItem>
+
+                            <asp:MenuItem Text="Repeater Reservations By Date" NavigateUrl="~/SamplePages/ReservationsByDate"></asp:MenuItem>
+
+                            <asp:MenuItem Text="Repeater Category MenuItems" NavigateUrl="~/SamplePages/CategoryMenuItems"></asp:MenuItem>
+
+                        </asp:MenuItem>
+
+
+
+
+                         <asp:MenuItem Text="CRUD" Value="CRUD">
+
+                            <asp:MenuItem Text="ListView CRUD" NavigateUrl="~/CommandPages/SpecialEventsAdmin"></asp:MenuItem>
+
+                            <asp:MenuItem Text="Waiter 1517 CRUD" NavigateUrl="~/CommandPages/WaiterAdmin"></asp:MenuItem>
+
+                         </asp:MenuItem>
+
+
+
+
+                        <asp:MenuItem Text="REPORTS" Value="REPORTS">
+
+                            <asp:MenuItem Text="Category Menu Items" NavigateUrl="~/Reports/CategoryMenuItemsReport"></asp:MenuItem>
+
+                            
+
+                         </asp:MenuItem>
+
+                        
+
+                         <asp:MenuItem Text="About Us" NavigateUrl="~/About.aspx"></asp:MenuItem>
+
+                         <asp:MenuItem Text="Contact Us" NavigateUrl="~/Contact.aspx"></asp:MenuItem>
+
+                    </Items>
+
+                </asp:Menu>)
+
                 </div>
             </div>
         </div>

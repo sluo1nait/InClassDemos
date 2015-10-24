@@ -13,7 +13,7 @@ namespace eRestaurantSystem.DAL.POCOs
     {
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public int? CAlories { get; set; }
+        public int? Calories { get; set; }
         public string Comment { get; set; }
     }
 }

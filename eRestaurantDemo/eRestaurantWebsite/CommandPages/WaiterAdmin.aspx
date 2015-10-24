@@ -66,9 +66,11 @@
         </tr>
         <tr>
             <td style="width: 291px">
-                <a href="javascript:__doPostBack('WaiterInsert','')">Insert</a></td>
+               <asp:LinkButton ID="WaiterInsert" runat="server" OnClick="WaiterInsert_Click">Insert</asp:LinkButton>
             <td>
-                <a href="javascript:__doPostBack('LinkButton1','')">Update</a></td>
+            
+                    <asp:LinkButton ID="WaiterUpdate" runat="server" OnClick="WaiterUpdate_Click">Update</asp:LinkButton>
+                </td>
         </tr>
     </table>
     <br />
