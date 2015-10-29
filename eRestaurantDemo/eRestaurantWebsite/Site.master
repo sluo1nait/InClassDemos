@@ -132,11 +132,12 @@
                             <asp:MenuItem Text="SpecialEvents" NavigateUrl="~/SamplePages/SpecialEventsAdmin"></asp:MenuItem>
 
                             <asp:MenuItem Text="ListView Reservations" NavigateUrl="~/SamplePages/Listview"></asp:MenuItem>
+                            
 
                             <asp:MenuItem Text="Repeater Reservations By Date" NavigateUrl="~/SamplePages/ReservationsByDate"></asp:MenuItem>
 
                             <asp:MenuItem Text="Repeater Category MenuItems" NavigateUrl="~/SamplePages/CategoryMenuItems"></asp:MenuItem>
-
+                            <asp:MenuItem Text="Front Desk" NavigateUrl="~/UXPages/FrontDesk.aspx"></asp:MenuItem>
                         </asp:MenuItem>
 
 
