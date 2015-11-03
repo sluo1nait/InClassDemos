@@ -52,6 +52,7 @@
     <Compile Include="BusinessRuleException.cs" />
     <Compile Include="DAL\DTOs\MenuCategoryItems.cs" />
     <Compile Include="DAL\DTOs\ReservationByDate.cs" />
+    <Compile Include="DAL\DTOs\ReservationCollection.cs" />
     <Compile Include="DAL\Entites\Bill.cs" />
     <Compile Include="DAL\Entites\BillItem.cs" />
     <Compile Include="DAL\Entites\Item.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="DAL\POCOs\CategoryMenuItems.cs" />
     <Compile Include="DAL\POCOs\MenuItem.cs" />
     <Compile Include="DAL\POCOs\ReservationDetail.cs" />
+    <Compile Include="DAL\POCOs\ReservationSummary.cs" />
     <Compile Include="DAL\POCOs\WaiterBilling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

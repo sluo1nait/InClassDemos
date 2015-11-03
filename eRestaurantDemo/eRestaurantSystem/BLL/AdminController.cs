@@ -327,6 +327,47 @@ namespace eRestaurantSystem.BLL
             }
         }
 
+
+       
+        [DataObjectMethod(DataObjectMethodType.Select)]
+           public List<ReservationCollection> ReservationsByTime(DateTime date)
+           {
+               using (var context = new eRestaurantContext())
+               {
+                   var result = (from eachReservationRow in context.Reservations //take each row from the Reservation
+                                 where eachReservationRow.ReservationDate.Year == date.Year
+                                 && eachReservationRow.ReservationDate.Month == date.Month
+                                 && eachReservationRow.ReservationDate.Day == date.Day
+                                     // && data.ReservationDate.Hour == timeSlot.Hours
+                                 && eachReservationRow.ReservationStatus == "B" //Reservation.Booked
+                                 select new ReservationSummary()
+                                 {
+                                     ID = eachReservationRow.ReservationID,
+                                     Name = eachReservationRow.CustomerName,
+                                     Date = eachReservationRow.ReservationDate,
+                                     NumberInParty = eachReservationRow.NumberInParty,
+                                     Status = eachReservationRow.ReservationStatus,
+                                     Event = eachReservationRow.Event.Description,
+                                     Contact = eachReservationRow.ContactPhone
+                                 }).ToList(); //causes execution of the query so 
+                                              //that the retrieved data is in memory
+                                                //so as to be used in the following query
+
+                   var finalResult = from item in result
+                                     orderby item.NumberInParty
+                                     group item by item.Date.Hour into itemGroup //Datetime is not liked for C#;
+                                                                            //temporary data collection, put result into new 'itemGroup' collection
+                                     select new ReservationCollection()//DTO
+                                     {
+                                         Hour = itemGroup.Key,
+                                         Reservations = itemGroup.ToList()
+                                     };
+                   return finalResult.OrderBy(x => x.Hour).ToList(); //method syntax
+               }
+           }
+       
+
+
   #endregion
 }
 }//eof namespace
