@@ -66,7 +66,9 @@
     <Compile Include="DAL\POCOs\MenuItem.cs" />
     <Compile Include="DAL\POCOs\ReservationDetail.cs" />
     <Compile Include="DAL\POCOs\ReservationSummary.cs" />
+    <Compile Include="DAL\POCOs\SeatingSummary.cs" />
     <Compile Include="DAL\POCOs\WaiterBilling.cs" />
+    <Compile Include="DAL\POCOs\WaiterOnDuty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

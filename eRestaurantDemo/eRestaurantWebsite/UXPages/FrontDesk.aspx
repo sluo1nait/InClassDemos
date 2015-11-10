@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
 
-       <div class="well">
+           <div class="well">
         <div class="pull-right col-md-5">
             <h4>
                 <small>Last Billed Date/Time:</small>
@@ -32,6 +32,76 @@
             <p>The time uses the ClockPicker Bootstrap extension</p>
         </details>
     </div>
+
+
+        <!--this source is to display the seating summary-->
+    <div class="col-md-7">
+        <details open>
+            <summary>Tables</summary>
+<p class="well">This GridView uses a &lt;asp:TemplateField …&gt; for the table 
+    number and the controls to handle walk-in seating. Additionally, 
+    the walk-in seating form is in a panel that only shows if the seat is <em>not</em> taken. Handling of the action to <b>seat customers</b> is done in the code-behind, on the GridView's <code>OnSelectedIndexChanging</code> event.</p>
+            <style type="text/css">
+                .inline-div {
+                    display: inline;
+                }
+            </style>
+            <asp:GridView ID="SeatingGridView" runat="server" AutoGenerateColumns="False"
+                    CssClass="table table-hover table-striped table-condensed"
+                    DataSourceID="SeatingObjectDataSource" ItemType="eRestaurantSystem.DAL.POCOs.SeatingSummary">
+                <Columns>
+                    <asp:CheckBoxField DataField="Taken" HeaderText="Taken" SortExpression="Taken" ItemStyle-HorizontalAlign="Center"></asp:CheckBoxField>
+                    <asp:TemplateField HeaderText="Table" SortExpression="Table" ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <asp:Label ID="TableNumber" runat="server" Text='<%# Item.Table %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="Seating" HeaderText="Seating" SortExpression="Seating" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+                    <asp:TemplateField HeaderText="Reservation Notes / Seat Walk-In">
+                        <ItemTemplate>
+                            <asp:Panel ID="WalkInSeatingPanel" runat="server" CssClass="input-group input-group-sm"
+                                    Visible='<%# !Item.Taken %>'>
+                                <asp:TextBox ID="NumberInParty" runat="server" CssClass="form-control col-md-1"
+                                        TextMode="Number" placeholder="# people"></asp:TextBox>
+                                <span class="input-group-addon">
+                                    <asp:DropDownList ID="WaiterList" runat="server"
+                                            CssClass="selectpicker"
+                                            AppendDataBoundItems="true" DataSourceID="WaitersDataSource"
+                                            DataTextField="FullName" DataValueField="WaiterId">
+                                        <asp:ListItem Value="0">[select a waiter]</asp:ListItem>
+                                    </asp:DropDownList>
+                                </span>
+                                <span class="input-group-addon" style="width:5px;padding:0;border:0;background-color:white;"></span>
+                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Seat Customers"
+                                    CssClass="input-group-btn" CommandName="Select" CausesValidation="False" />
+                            </asp:Panel>
+                            <asp:Panel ID="OccupiedTablePanel" runat="server"
+                                    Visible='<%# Item.Taken  %>'>
+                                <%# Item.Waiter %>
+                                <asp:Label ID="ReservationNameLabel" runat="server" 
+                                        Text='<%# "&mdash;" + Item.ReservationName %>'
+                                        Visible='<%# !string.IsNullOrEmpty(Item.ReservationName) %>' />
+                                <asp:Panel ID="BillInfo" runat="server" CssClass="inline-div"
+                                        Visible='<%# Item.BillTotal.HasValue && Item.BillTotal.Value > 0 %>'>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# string.Format(" &ndash; {0:C}", Item.BillTotal) %>' />
+                                </asp:Panel>
+                            </asp:Panel>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+
+             </details>
+    </div>
+     <asp:ObjectDataSource runat="server" ID="SeatingObjectDataSource" OldValuesParameterFormatString="original_{0}" 
+         SelectMethod="SeatingByDateTime" TypeName="eRestaurantSystem.BLL.AdminController">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="SearchDate" PropertyName="Text" Name="date" Type="DateTime"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="SearchTime" PropertyName="Text" DbType="Time" Name="newtime"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
+      <asp:ObjectDataSource ID="WaitersDataSource" runat="server" OldValuesParameterFormatString="original_{0}" 
+          SelectMethod="ListWaiter" TypeName="eRestaurantSystem.BLL.AdminController"></asp:ObjectDataSource>
         <!--this source is to display the Reservations for the selected day in a collaispable display controlled by
             bootstrap -->
     <div class="pull-right col-md-5">
@@ -79,5 +149,6 @@
             </asp:ObjectDataSource>
         </details>
     </div>
+
 </asp:Content>
 
