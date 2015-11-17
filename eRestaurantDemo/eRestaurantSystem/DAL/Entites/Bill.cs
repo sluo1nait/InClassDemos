@@ -20,7 +20,7 @@ namespace eRestaurantSystem.DAL.Entites
         public TimeSpan? OrderPaid { get; set; }
 
         public int NumberInParty { get; set; }
-        public bool PaidStatus { get; set; }
+        public bool PaidStatus { get; set; }  //default is false
         public int WaiterID { get; set; }
         public int? TableID { get; set; }
         public int? ReservationID { get; set; }
