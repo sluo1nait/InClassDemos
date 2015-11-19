@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="FrontDesk.aspx.cs" Inherits="UXPages_FrontDesk" %>
 
 <%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
+<%@ Register Src="~/UserControls/DateTimeMocker.ascx" TagPrefix="uc1" TagName="DateTimeMocker" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-
-           <div class="well">
+    <uc1:DateTimeMocker runat="server" ID="Mocker" />
+      <div class="well">
         <div class="pull-right col-md-5">
             <h4>
                 <small>Last Billed Date/Time:</small>
@@ -65,6 +67,12 @@
                         <ItemTemplate>
                             <asp:Panel ID="WalkInSeatingPanel" runat="server" CssClass="input-group input-group-sm"
                                     Visible='<%# !Item.Taken %>'>
+                                <asp:HyperLink ID ="ServerTableLink" runat ="server"
+                                    NavigateUrl ='<%# string.Format("~/UXPages/ServingTables.aspx?waiter={0}&bill={1}&md={2}&mt={3}&mds=(4)&mts={5}",
+                                    Item.Waiter, Item.BillID,Mocker.MockDate.Ticks,Mocker.MockTime.Ticks,Mocker.MockDate.ToShortDateString(),
+                                    Mocker.MockTime.ToString()) %>'
+                                    <%# Item.Waiter %>
+                                </asp:HyperLink>
                                 <asp:TextBox ID="NumberInParty" runat="server" CssClass="form-control col-md-1"
                                         TextMode="Number" placeholder="# people"></asp:TextBox>
                                 <span class="input-group-addon">
@@ -100,8 +108,8 @@
      <asp:ObjectDataSource runat="server" ID="SeatingObjectDataSource" OldValuesParameterFormatString="original_{0}" 
          SelectMethod="SeatingByDateTime" TypeName="eRestaurantSystem.BLL.AdminController">
         <SelectParameters>
-            <asp:ControlParameter ControlID="SearchDate" PropertyName="Text" Name="date" Type="DateTime"></asp:ControlParameter>
-            <asp:ControlParameter ControlID="SearchTime" PropertyName="Text" DbType="Time" Name="newtime"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="Mocker" PropertyName="MockDate" Name="date" Type="DateTime"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="Mocker" PropertyName="MockTime" DbType="Time" Name="newtime"></asp:ControlParameter>
         </SelectParameters>
     </asp:ObjectDataSource>
       <asp:ObjectDataSource ID="WaitersDataSource" runat="server" OldValuesParameterFormatString="original_{0}" 
@@ -148,7 +156,7 @@
                 OldValuesParameterFormatString="original_{0}" SelectMethod="ReservationsByTime" 
                 TypeName="eRestaurantSystem.BLL.AdminController">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="SearchDate" PropertyName="Text" Name="date" Type="DateTime"></asp:ControlParameter>
+                    <asp:ControlParameter ControlID="Mocker" PropertyName="MockDate" Name="date" Type="DateTime"></asp:ControlParameter>
                 </SelectParameters>
             </asp:ObjectDataSource>
         </details>
