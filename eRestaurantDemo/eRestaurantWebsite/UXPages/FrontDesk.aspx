@@ -38,6 +38,18 @@
         </details>
     </div>
 
+    <asp:Panel ID="ReservationSeatingPanel" runat="server" Visible='<%# ShowReservationSeating() %>'>
+    <asp:DropDownList ID="WaiterDropDownList" runat="server" CssClass="seating"
+        AppendDataBoundItems="true" DataSourceID="WaitersDataSource"
+        DataTextField="FullName" DataValueField="WaiterId">
+        <asp:listitem value="0">[select a waiter]</asp:listitem>
+    </asp:DropDownList>
+    <asp:ListBox ID="ReservationTableListBox" runat="server" CssClass="seating"                             
+        DataSourceID="AvailableSeatingObjectDataSource" SelectionMode="Multiple" Rows="14"
+        DataTextField="Table" DataValueField="Table">
+    </asp:ListBox>
+</asp:Panel>
+
 
         <!--this source is to display the seating summary-->
     <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
