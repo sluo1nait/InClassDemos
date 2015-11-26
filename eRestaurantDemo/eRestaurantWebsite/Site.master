@@ -138,6 +138,7 @@
 
                             <asp:MenuItem Text="Repeater Category MenuItems" NavigateUrl="~/SamplePages/CategoryMenuItems"></asp:MenuItem>
                             <asp:MenuItem Text="Front Desk" NavigateUrl="~/UXPages/FrontDesk.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Security" NavigateUrl="~/Admin/Security/Default.aspx"></asp:MenuItem>
                         </asp:MenuItem>
 
 

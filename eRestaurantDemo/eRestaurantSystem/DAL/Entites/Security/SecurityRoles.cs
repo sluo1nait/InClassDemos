@@ -22,5 +22,6 @@ namespace eRestaurantSystem.DAL.Entites.Security
                 return value;
             }
         }
+       
     }
 }
